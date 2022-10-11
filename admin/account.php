@@ -75,7 +75,7 @@ require 'php-includes/check-login.php';
             <div class="tab-content p-3">
                 <div class="tab-pane active" id="edit">
                 <?php
-                    $query = "SELECT * FROM seller WHERE email= ? limit 1";
+                    $query = "SELECT * FROM admin WHERE email= ? limit 1";
                     $stmt = $db->prepare($query);
                     $stmt->execute(array($_SESSION['email']));
                     $rows = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -92,7 +92,7 @@ require 'php-includes/check-login.php';
                     $apassword=md5($_POST['apassword']);
                     if ($apassword == $cpassword){
                         if($apassword == $cpassword){
-                            $sql ="UPDATE seller SET address = ?, phone = ? , password = ? WHERE email = ?";
+                            $sql ="UPDATE admin SET address = ?, phone = ? , password = ? WHERE email = ?";
                             $stm = $db->prepare($sql);
                             if ($stm->execute(array($uaddress, $uphone, $cpassword, $_SESSION['email']))) {
                                 print "<script>alert('your data updated');window.location.assign('account.php')</script>";
