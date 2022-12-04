@@ -15,7 +15,8 @@ function getToken() {
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS => '{"client_id": "89f8e714-0f47-11ed-babe-dead0062f58a","client_secret": "afc73b804eee90103e2c8caad4741393da39a3ee5e6b4b0d3255bfef95601890afd80709"}',
+      //CURLOPT_POSTFIELDS => '{"client_id": "89f8e714-0f47-11ed-babe-dead0062f58a","client_secret": "afc73b804eee90103e2c8caad4741393da39a3ee5e6b4b0d3255bfef95601890afd80709"}',
+      CURLOPT_POSTFIELDS => '{"client_id": "a5072f6a-7415-11ed-962d-dead64802bd2","client_secret": "85bd49397d2a7ab0bf6e1c9326325ac8da39a3ee5e6b4b0d3255bfef95601890afd80709"}',
       CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
     ));
   
@@ -29,7 +30,7 @@ if(isset($_POST['pay'])){
     $card=$_POST['card'];
     $number=$_POST['number'];
     $amount=$_POST['amount'];
-    $query = "SELECT * FROM user WHERE card= ? limit 1";
+    $query = "SELECT * FROM user WHERE card = ? limit 1";
     $stmt = $db->prepare($query);
     $stmt->execute(array($card));
     $rows = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -91,7 +92,7 @@ if(isset($_POST['pay'])){
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Smart toilette - login</title>
+  <title>Smart toilette</title>
   <!-- loader-->
   <link href="assets/css/pace.min.css" rel="stylesheet"/>
   <script src="assets/js/pace.min.js"></script>
