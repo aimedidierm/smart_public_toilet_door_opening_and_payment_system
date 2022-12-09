@@ -1,6 +1,12 @@
 <?php
-$names="Aime Didier";
-$email="seller@gmail.com";
+$query = "SELECT * FROM seller WHERE email= ? limit 1";
+$stmt = $db->prepare($query);
+$stmt->execute(array($_SESSION['email']));
+$rows = $stmt->fetch(PDO::FETCH_ASSOC);
+if ($stmt->rowCount()>0) {
+    $names=$rows['names'];
+    $email=$rows['email'];
+}
 ?>
 <!--Start sidebar-wrapper-->
 <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
