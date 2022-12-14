@@ -30,9 +30,9 @@ if(isset($_POST['pay'])){
     $card=$_POST['card'];
     $number=$_POST['number'];
     $amount=$_POST['amount'];
-    $query = "SELECT * FROM user WHERE card = ? limit 1";
+    $query = "SELECT * FROM user WHERE id = '1' limit 1";
     $stmt = $db->prepare($query);
-    $stmt->execute(array($card));
+    $stmt->execute();
     $rows = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($stmt->rowCount()>0) {
         //some codes here

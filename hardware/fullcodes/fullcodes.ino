@@ -135,7 +135,7 @@ void loop() {
           JsonObject& root = jsonBuffer.parseObject(data);
           s.println(data);
           Serial.println(data);
-          //if (root["cstatus"]) {
+          if (root["cstatus"]) {
           int cstatus = root["cstatus"];
           int balance = root["balance"];
           if(cstatus==1){
@@ -152,7 +152,7 @@ void loop() {
                 opendooru();
                 }
               }
-          //}
+          }
           }
               }
         }
@@ -216,6 +216,7 @@ void opendoor2(){
  rbuttonState = digitalRead(rbuto);
  if (rbuttonState == HIGH) {
   s.println("report1");
+  Serial.println("report1");
   lcd.clear();
   lcd.print("User reported");
   delay(1000);
@@ -239,6 +240,7 @@ void opendoor2u(){
  rbuttonState2 = digitalRead(rbuto2);
  if (rbuttonState2 == HIGH) {
   s.println("report2");
+  Serial.println("report2");
   lcd.clear();
   lcd.print("User reported");
   delay(1000);
