@@ -97,22 +97,23 @@ void loop() {
  lcd.setCursor(0, 0);
  lcd.print("Place Your Card");    
   if (getID()){
+    if (tagID == "13CE9E"){
+    lowbalance();
+    }
     if (tagID == "50E0A220"){
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("Welcome admin");
-    tone(buzzer, 1000, 1000);
     delay(2000);
     if (toilette==1){
     opendoor();
     } else if (toilette==2){
       opendooru();
-      }
+      } 
       } else if (tagID == "1934226"){
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("Welcome cleaner");
-    tone(buzzer, 1000, 1000);
     delay(2000);
     if (toilette==1){
     opendoor();
@@ -129,6 +130,8 @@ void loop() {
           }
         while(k==0){
           if (s.available() > 0) {
+            
+            /*
             //kwakira data zivuye kuri node mcu na server
            data = s.readStringUntil('\n');
           DynamicJsonBuffer jsonBuffer ;
@@ -137,7 +140,7 @@ void loop() {
           Serial.println(data);
           if (root["cstatus"]) {
           int cstatus = root["cstatus"];
-          int balance = root["balance"];
+          //int balance = root["balance"];
           if(cstatus==1){
             lowbalance();
             } else{
@@ -152,9 +155,18 @@ void loop() {
                 opendooru();
                 }
               }
-          }
-          }
+          }*/
+          lcd.clear();
+          lcd.setCursor(0, 0);
+          lcd.print("Please wait");
+          delay(5000);
+          if (toilette==1){
+              opendoor();
+              } else if (toilette==2){
+                opendooru();
+                }
               }
+          }
         }
     
     }
@@ -178,7 +190,7 @@ boolean getID(){
 void lowbalance(){
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Insufficient funds");
+  lcd.print("Low balance");
   tone(buzzer, 1000, 500);
   delay(1300);
   resetFunc();
@@ -222,6 +234,7 @@ void opendoor2(){
   delay(1000);
  }
   if (buttonState == HIGH) {
+  tone(buzzer, 1000, 1000);
   digitalWrite(motor1,HIGH);
   digitalWrite(motor2,LOW);
   delay(5000);
@@ -246,6 +259,8 @@ void opendoor2u(){
   delay(1000);
  }
   if (buttonStateu == HIGH) {
+    
+  tone(buzzer, 1000, 1000);
   digitalWrite(motor1u,HIGH);
   digitalWrite(motor2u,LOW);
   delay(5000);

@@ -71,7 +71,7 @@ if(isset($_POST['card1'])){
             $sql ="UPDATE user SET balance = ? WHERE id = ? limit 1";
             $stm = $db->prepare($sql);
             if ($stm->execute(array($newamount, $user))) {
-                $sql ="INSERT INTO transactions (credit,user,toy) VALUES (?,?,'0')";
+                $sql ="INSERT INTO transactions (credit,seller,user,toy) VALUES (?,'1',?,'0')";
                 $stm = $db->prepare($sql);
                 $stm->execute(array($price1,$user));
                 $data = array("cstatus" =>"2","balance" =>$newamount); 
@@ -99,7 +99,7 @@ if(isset($_POST['card2'])){
             $sql ="UPDATE user SET balance = ? WHERE id = ? limit 1";
             $stm = $db->prepare($sql);
             if ($stm->execute(array($newamount, $user))) {
-                $sql ="INSERT INTO transactions (credit,user,toy) VALUES (?,?,'1')";
+                $sql ="INSERT INTO transactions (credit,seller,user,toy) VALUES (?,'1',?,'1')";
                 $stm = $db->prepare($sql);
                 $stm->execute(array($price2,$user));
                 $data = array("cstatus" =>"3","balance" =>$newamount); 
