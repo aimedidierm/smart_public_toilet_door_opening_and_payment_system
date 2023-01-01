@@ -130,7 +130,9 @@ void loop() {
           }
         while(k==0){
           if (s.available() > 0) {
-            
+          data = s.readStringUntil('\n');
+          s.println(data);
+          Serial.println(data);
             /*
             //kwakira data zivuye kuri node mcu na server
            data = s.readStringUntil('\n');
